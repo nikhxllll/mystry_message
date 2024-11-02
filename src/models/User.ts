@@ -5,7 +5,7 @@ export interface Message extends Document{
     createdAt : Date
 }
 
-const messageSchema : Schema<Message> = new Schema({
+const MessageSchema : Schema<Message> = new Schema({
     content:{
         type : String,
         required : true,
@@ -24,6 +24,7 @@ export interface User extends Document {
     username : string;
     verifyCode : string;
     verifyCodeExpiry : Date;
+    isVerified : boolean;
     isAcceptingMessage : boolean;
     message : Message[]
 }
@@ -47,6 +48,20 @@ const UserSchema:Schema<User> = new Schema({
     },
     verifyCode : {
         type : String,
-        required: true
-    }
+        required: [true, "Verify code is required"]
+    },
+    verifyCodeExpiry : {
+        type : Date,
+        required: [true, "Verify code Expiry is required"]
+    },
+    isVerified : {
+        type : Boolean,
+        default : false
+    },
+    isAcceptingMessage : {
+        type : Boolean,
+        default : true
+    },
+    message : [MessageSchema]
+
 })
