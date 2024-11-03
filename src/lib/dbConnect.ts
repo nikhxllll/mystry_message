@@ -18,6 +18,8 @@ async function dbconnect(){
         console.log("Mongo DB connected successfully!")
     } catch (error) {
         console.log("Database connection failed",error)
-        process.exit(1)
+        process.exit(1)//exit the process gracefully
     }
 }
+
+export default dbconnect()
