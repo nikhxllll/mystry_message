@@ -41,9 +41,6 @@ export async function POST(request : Request){
         }
         //send verification email
 
-
-
-
         }
     } catch (error) {
         console.error("Error registering user",error)
