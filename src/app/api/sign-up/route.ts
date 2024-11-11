@@ -4,7 +4,7 @@ import UserModel from "@/models/User";
 import bcrypt from "bcryptjs"
 
 export async function POST(request : Request){
-    await dbConnect()
+    await dbConnect();
 
     try {
         const {username, email,password}=await request.json()
@@ -39,6 +39,11 @@ export async function POST(request : Request){
 
             await newUser.save()
         }
+        //send verification email
+
+
+
+
         }
     } catch (error) {
         console.error("Error registering user",error)
