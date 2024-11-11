@@ -18,12 +18,26 @@ export async function POST(request : Request){
                 message : "Username is already taken"
             },{status:400})
         const existingUserByEmail = await UserModel.findOne({email})
+        const verifyCode = Math.floor(100000 + Math.random()*90000).toString()
         if(existingUserByEmail){
             
         }
         else{
             const hashedPassword = await bcrypt.hash(password,10)
-            const expiryDate = await 
+            const expiryDate = new Date()
+            expiryDate.setHours(expiryDate.getHours()+1)
+            const newUser = new UserModel({
+                email,
+                password : hashedPassword,
+                username, 
+                verifyCode,
+                verifyCodeExpiry : expiryDate,
+                isVerified: false,
+                isAcceptingMessage : true,
+                message : []
+            })
+
+            await newUser.save()
         }
         }
     } catch (error) {
