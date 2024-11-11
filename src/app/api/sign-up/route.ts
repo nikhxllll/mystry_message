@@ -1,6 +1,7 @@
 import { sendVerificationEmail } from "@/helpers/sendVerificationEmail";
 import dbConnect from "@/lib/dbConnect";
 import UserModel from "@/models/User";
+import bcrypt from "bcryptjs"
 
 export async function POST(request : Request){
     await dbConnect()
@@ -16,7 +17,14 @@ export async function POST(request : Request){
                 success:false,
                 message : "Username is already taken"
             },{status:400})
+        const existingUserByEmail = await UserModel.findOne({email})
+        if(existingUserByEmail){
             
+        }
+        else{
+            const hashedPassword = await bcrypt.hash(password,10)
+            const expiryDate = await 
+        }
         }
     } catch (error) {
         console.error("Error registering user",error)
