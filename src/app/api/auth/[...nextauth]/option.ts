@@ -28,7 +28,7 @@ export const authOptions : NextAuthOptions = {providers: [
                 if(!user.isVerified){
                     throw new Error("Please verify your account before login")
                 }
-                const isPasswordCorrect:boolean = await bcryptjs.compare(credentials.password,user.password)
+                const isPasswordCorrect:boolean = await bcryptjs.compare(credentials.password,user.password)//can cause error coz added typescript
                 if(isPasswordCorrect){
                     return user
                 }
