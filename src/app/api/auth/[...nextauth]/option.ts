@@ -45,5 +45,8 @@ export const authOptions: NextAuthOptions = {
         },
       }),
     ],
-
+    pages:{
+        signIn: '/sign-in',
+    },
+    
 }
