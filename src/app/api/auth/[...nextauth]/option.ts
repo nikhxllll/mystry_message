@@ -45,11 +45,26 @@ export const authOptions: NextAuthOptions = {
         },
       }),
     ],
+    callbacks:{
+        async jwt(token,user){
+            
+            
+            return token
+
+        },
+        async session(session,token){
+            
+            
+            return session
+
+        }
+       
+    },
     pages:{
         signIn: '/sign-in',
     },
     session:{
-        strategy:"jwt"
+        strategy:"jwt",
     }
     
 }
