@@ -1,10 +1,10 @@
-import dbConnect from '@/lib/dbConnect';
+import { dbconnect } from '@/lib/dbConnect';
 import UserModel from '@/models/User';
 import bcrypt from 'bcryptjs';
 import { sendVerificationEmail } from '@/helpers/sendVerificationEmail';
 
 export async function POST(request: Request) {
-  await dbConnect(); //can cause error
+  await dbconnect(); //can cause error
 
   try {
     const { username, email, password } = await request.json();
