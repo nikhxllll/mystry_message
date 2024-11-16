@@ -55,12 +55,15 @@ export const authOptions: NextAuthOptions = {
             }
             return token;
         },
-        async session(session,token){
-            
-            
-            return session
-
-        }
+        async session({ session, token }) {
+            if (token) {
+              session.user._id = token._id;
+              session.user.isVerified = token.isVerified;
+              session.user.isAcceptingMessages = token.isAcceptingMessages;
+              session.user.username = token.username;
+            }
+            return session;
+        },
        
     },
     pages:{
@@ -69,6 +72,6 @@ export const authOptions: NextAuthOptions = {
     session:{
         strategy:"jwt",
     },
-    secret:process.env.NEXTAUTH_SECRET
+    secret: process.env.NEXTAUTH_SECRET
     
 }
