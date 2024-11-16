@@ -6,7 +6,7 @@ type ConnectionObject = {
 
 const connection : ConnectionObject = {}
 
-async function dbconnect(){
+export async function dbconnect(){
     if(connection.isConnected){
         console.log("Already connected")
     }
@@ -22,4 +22,4 @@ async function dbconnect(){
     }
 }
 
-export default dbconnect()// export the function
+// export default dbconnect()// export the function
